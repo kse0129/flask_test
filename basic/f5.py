@@ -36,11 +36,11 @@ app = Flask(__name__)
 def login():
     # method별 분기
     if request.method == 'GET':
-        return "Hello world"    
+        return render_template('login.html')   
     else: # request.method == 'POST'
         # 1. 로그인 정보 획득
-        user_id = request.form.get('user_id')
-        user_pw = request.form.get('user_pw') # 암호는 차후에 암호화해야함(관리자도 볼 수 없음)
+        user_id = request.form.get('uid')
+        user_pw = request.form.get('upw') # 암호는 차후에 암호화해야함(관리자도 볼 수 없음)
         print(user_id, user_pw)
         # 2. 회원 여부를 쿼리
         # 3. 회원이면
@@ -49,8 +49,6 @@ def login():
         # 4. 회원이 아니면
             # 4-1. 적당한 메세지 후 다시 로그인 유도
         return redirect('https://www.naver.com') # 요청을 다른 url로 포워딩
-
-    return "Hello world"
 
 if __name__ == "__main__":
     app.run(debug=True)
