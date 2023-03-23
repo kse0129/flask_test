@@ -1,0 +1,33 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <div>
+        <h3>1. 링크를 눌러서 GET 전송</h3>
+        <a href="http://127.0.0.1:5000/link?name=hello&age=100">링크</a>
+    </div>
+    <div>
+        <h3>2. form 태그를 통해서 form 전송(GET 방식)</h3>
+        <form action="http://127.0.0.1:5000/link" method="get">
+            <input name="name" value="hello" />
+            <input name="age" value="100" />
+            <input type="submit" value="전송" />
+        </form>
+        <h3>3. ajax를 통해서 GET 전송</h3>
+        <div id="get_ajax"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script>
+        $.get({
+            url: "http://127.0.0.1:5000/link",
+            data: "name=hello&age=100",
+            success: (res) => { $('#get_ajax').append(res) },
+            error: (err) => { console.log(err) }
+        })
+    </script>
+</body>
+
+</html>
