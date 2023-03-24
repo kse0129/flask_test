@@ -57,6 +57,60 @@
 	CHANGE COLUMN `name` `name` VARCHAR(32) NOT NULL COMMENT '고객 이름' COLLATE 'utf8mb4_general_ci' AFTER `upw`,
 	CHANGE COLUMN `regdate` `regdate` TIMESTAMP NOT NULL COMMENT '고객 가입일' AFTER `name`;
 
+6. 회원가입 -> insert
+    - INSERT INTO [`데이터베이스명`.]`테이블명` [(`컬럼명1`, `컬럼명2`, ...)] VALUES (`값1`, `값2`, ...);
+    - `` : 키워드와 같은 이름의 테이블명, 컬럼명 등일 경우 처리 가능
+    - '' : 값 표현
+    - now() : mySQL의 내장함수, 현재 시간을 리턴
+    - ex)
+        INSERT INTO `ml_db`.`users` 
+            (`uid`, `upw`, `name`, `regdate`)
+        VALUES 
+            ('guest', '1234', '사용자1', now());
+
+7. 로그인 -> select (쿼리의 분량이 가장 많음)
+    -- 회원가입 여부 조회 -> 로그인 처리 쿼리
+    -- 대소문자 구분 X
+    -- 제시한 아이디, 비번과 일치하는 row 데이터를
+    -- 가져와서 uid, name, regdate값 출력
+    SELECT
+        uid, `name`, regdate
+    FROM
+        users
+    WHERE
+        uid='guest'
+    AND
+        upw='1234';
+
+8. 회원 정보 수정 -> update 
+
+
+9. 회원 탈퇴 -> delete
+
+
 
 '''
+'''
+    파이썬에서 DB에 접속/접속해제
+'''
 import pymysql
+
+connection = None
+try:
+    # 1. 접속
+    connection = pymysql.connect(host='localhost',  # 127.0.0.1, 서버주소
+                                port=3306,         # 포트
+                                user='root',       # 사용자 계정, root 이외 계정 사용 권장
+                                password='1234',   # 비밀번호
+                                database='ml_db',  # 접속할 데이터 베이스
+                                # cursorclass=pymysql.cursors.DictCursor
+                                )
+except Exception as e:
+    print('접속 오류', e)
+else:
+    print('접속 성공')
+finally:
+    # 2. 접속 종료 -> close
+    if connection:
+        connection.close()
+        print('접속 종료 성공')
