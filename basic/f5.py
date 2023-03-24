@@ -36,7 +36,7 @@ app.secret_key = '79a861e40219c782c9c0e504b3b4e87c'
 # 로그인을 하여 세션을 얻어야 사이트를 보여줄 것
 @app.route('/')
 def home():
-    if not 'uid' in session: # 세션 안에 uid 값이 존재하는지
+    if 'uid' not in session: # 세션 안에 uid 값이 존재하는지
         # return redirect('/login') url을 하드코딩 X
         # url_for('url과 연결된 함수명') 
         return redirect(url_for('login'))
