@@ -47,13 +47,14 @@ def login():
         result = login_db(user_id, user_pw)
         # 3. 회원이면
         if result:
-            # 3-1. 세션생성, 기타 필요한 조치 수행
+            # 3-1. 세션 생성, 기타 필요한 조치 수행
             # 3-2. 서비스 메인 화면으로 이동
             return
         # 4. 회원이 아니면
         else:
             # 4-1. 적당한 메세지 후 다시 로그인 유도
-            return render_template('error.html')
+            # render_template(): jinja2 템플릿 엔진 사용
+            return render_template('error.html', msg='로그인 실패')
         # return redirect('https://www.naver.com') # 요청을 다른 url로 포워딩
 
 if __name__ == "__main__":
