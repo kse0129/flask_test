@@ -44,7 +44,7 @@ def login():
         user_pw = request.form.get('upw') # 암호는 차후에 암호화해야함(관리자도 볼 수 없음)
         print(user_id, user_pw)
         # 2. 회원 여부를 쿼리
-        login_db(user_id, user_pw)
+        print(login_db(user_id, user_pw))
         # 3. 회원이면
             # 3-1. 세션생성, 기타 필요한 조치 수행
             # 3-2. 서비스 메인 화면으로 이동
