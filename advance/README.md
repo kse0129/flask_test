@@ -1,8 +1,8 @@
 # 플라스크 엔트리 포인트: step1_flask_run
 - 서버에 운영되는 방식에 맞춰서 구성
 - 명령어 조정: Flask 명령어 사용
-- ```
-    flask --app start_app --debug run
+```
+flask --app start_app --debug run
 ```
 
 # 애플리케이션 팩토리
