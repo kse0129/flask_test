@@ -5,20 +5,20 @@ from service.controllers import auth_bp as auth
 def home():
     # url_for("별칭.함수명") -> url 리턴
     print(url_for("auth_bp.login"))
-    return render_template("auth/home.html")
+    return render_template("home.html")
 
 @auth.route("/login")
 def login():
-    return render_template("auth/login.html")
+    return render_template("login.html")
 
 @auth.route("/logout")
 def logout():
-    return render_template("auth/logout.html")
+    return render_template("logout.html")
 
 @auth.route("/signup")
 def signup():
-    return render_template("auth/signup.html")
+    return render_template("signup.html")
 
 @auth.route("/delete")
 def delete():
-    return render_template("auth/delete.html")
+    return render_template("delete.html")

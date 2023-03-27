@@ -9,4 +9,4 @@ from service.controllers import main_bp as main
 # ~/main
 @main.route("/")
 def home():
-    return "main home"
+    return render_template("index.html")

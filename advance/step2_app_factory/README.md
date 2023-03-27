@@ -17,3 +17,15 @@ L __init__.py
 ```
 flask --app service --debug run
 ```
+
+# 블루프린트
+url과 함수의 매핑(라우트)을 관리하는 도구
+
+# 부트스트랩
+부트스트랩을 적용하여 페이지를 구성한다. flask-bootstrap은 2017년 이후로 업데이트되고 있지 않다.
+
+1. 부트스트랩 [다운로드](https://getbootstrap.kr/docs/5.2/getting-started/download/)
+
+2. 압축 해제 후 static 폴더에 bootstrap.min.css, bootstrap.min.js 이동
+
+다양한 UI 형태를 [예시](https://getbootstrap.kr/docs/5.2/examples/)로 제공하고 있다.
