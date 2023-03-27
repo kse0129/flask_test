@@ -5,8 +5,14 @@
 """
 from flask import render_template, request
 from service.controllers import main_bp as main
+from service.forms import FormQuestion
 
 # ~/main
 @main.route("/")
 def home():
     return render_template("index.html")
+
+@main.route("/question")
+def question():
+    form = FormQuestion()
+    return render_template("question.html", wtf=form)
