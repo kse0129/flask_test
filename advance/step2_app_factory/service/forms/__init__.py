@@ -13,5 +13,5 @@ class FormQuestion(FlaskForm):
     # 클래스 변수만 지정
     # 변수명 -> html태그의 id, name값
     # 첫번째 인자 -> label값 
-    title = StringField('제목', validators=[DataRequired('필수 입력란입니다.')])
+    title = StringField('제목', validators=[DataRequired('필수 입력란입니다.'), Email()])
     content = TextAreaField('내용', validators=[DataRequired('')])
