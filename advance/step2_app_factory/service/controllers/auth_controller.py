@@ -2,7 +2,7 @@ from flask import render_template, request, url_for, current_app, jsonify
 from service.controllers import auth_bp as auth
 # 시간 정보 획득, 시간차 계산
 from datetime import datetime, timedelta
-import jwt
+import jwt, bcrypt
 
 @auth.route("/")
 def home():
@@ -43,7 +43,14 @@ def logout():
 
 @auth.route("/signup")
 def signup():
-    return render_template("signup.html")
+    # TODO : 비밀번호 암호화
+    password = '1234'
+    # 암호화된 값은 디비에 패스워드 컬럼에 저장
+    b = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    # 확인및 복호화
+    # bcrypt.checkpw() => 이것으로 암호가 일치하는지만 체크해서 로그인시 활용
+    print( password, b, bcrypt.checkpw(password.encode('utf-8'), b) )
+    return "auth signup"
 
 @auth.route("/delete")
 def delete():

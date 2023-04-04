@@ -21,7 +21,7 @@
                     if (res.code == 1){
                         // 토큰을 쿠키에 저장
                         // path -> 토큰의 유효 범위(url 기준), '/': 전체 경로 적용
-                        $.cookies("token", access_token, {path: "/"})
+                        $.cookie("token", access_token, {path: "/"})
                         // 특정 페이지로 이동
                         // /main으로 이동해라
                         window.location.replace("{{url_for('main_bp.home')}}")
