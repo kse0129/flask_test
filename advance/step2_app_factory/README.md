@@ -125,3 +125,48 @@ orm 방식
     - 데이터베이스 밴더가 교체되더라도 동일하게 작동
 - 쿼리가 최적화되었다고 볼 수 없다: 기계적인 생성
 - sqlalchemy, flask-migrate
+
+- 코드
+
+```python
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+migrate = Migrate()
+
+db.init_app(app)
+migrate.init_app(app, db)
+```
+
+- 환경변수
+
+```python
+DB_PROTOCAL = "mysql+pymysql"
+DB_USER = "root"
+DB_PASSWORD = "1234"
+DB_HOST = "127.0.0.1"
+DB_PORT = 3306
+DB_DATABASE = "my_db"
+
+SQLALCHEMY_DATABASE_URL = f"{DB_PROTOCAL}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+```
+
+- 데이터베이스 생성, 초기화(최초 1회)
+```
+flask --app service db init
+```
+migrations 폴더가 생긴다.(내부는 자동으로 만들어지는 구조이므로, 관여하지 않는다) 단, versions 밑으로 수정할 때마다 새로운 버전의 DB가 생성된다
+
+- 모델(테이블) 생성, 변경
+```
+flask --app service db migrate
+```
+
+- 모델(테이블) 생성, 변경 후 데이터베이스에 적용
+```
+flask -app service db upgrade
+```
+
+컨테이너 이미지 생성 시 위의 명령어 3개를 차례대로 수행해서 데이터베이스 초기화, 생성 과정을 수행
