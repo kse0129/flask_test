@@ -12,7 +12,7 @@ def get_conn():
                         user="root",
                         password="1234",
                         database="ml_db",
-                        cursorclass=pymysql.cursors.Dictcursor)
+                        cursorclass=pymysql.cursors.DictCursor)
     return c
 
 # 풀링 생성 함수
@@ -26,7 +26,7 @@ def init_pool():
 
 # 로그인 처리
 def login(uid, upw):
-    print("풀링에서 관리하는 커넥션 수", db_pool.size())
+    # print("풀링에서 관리하는 커넥션 수", db_pool.size())
     # 커넥션 출에서 커넥션 1개를 빌려와서 쿼리 수행 후 반납
     # 1. 커넥션 획득
     conn = db_pool.connect()
@@ -43,5 +43,5 @@ def login(uid, upw):
         cursor.execute(sql, (uid, upw))
         row = cursor.fetchone()
     conn.close()
-    print("풀링에서 관리하는 커넥션 수", db_pool.size())
+    # print("풀링에서 관리하는 커넥션 수", db_pool.size())
     return row
