@@ -154,19 +154,30 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 ```
 
 - 데이터베이스 생성, 초기화(최초 1회)
+    - sqlite: 소형 데이터베이스, 스마트폰에 사용하는 DB. 이 경우에는 데이터베이스 생성을 자동으로 해줌ㅡㅛㄴ비
+
 ```
 flask --app service db init
 ```
 migrations 폴더가 생긴다.(내부는 자동으로 만들어지는 구조이므로, 관여하지 않는다) 단, versions 밑으로 수정할 때마다 새로운 버전의 DB가 생성된다
 
+
 - 모델(테이블) 생성, 변경
+
+model > models.py에 테이블 내용 작성
 ```
 flask --app service db migrate
 ```
 
 - 모델(테이블) 생성, 변경 후 데이터베이스에 적용
 ```
-flask -app service db upgrade
+flask --app service db upgrade
 ```
 
 컨테이너 이미지 생성 시 위의 명령어 3개를 차례대로 수행해서 데이터베이스 초기화, 생성 과정을 수행
+
+## 필요한 기능 시뮬레이션
+
+- DBA는 sql문을 작성해서 쿼리 구현 
+- ORM에서는 shell을 열어서 파이썬 코드로 구현
+- flask --app service shell
