@@ -25,6 +25,7 @@ def create_app():
 
     return app
 
+
 def init_database(app):
     # pool
     from .model import pool_sql
@@ -34,9 +35,8 @@ def init_database(app):
     # ORM을 위한 flask, sql, migrate 객체 연결
     db.init_app(app)
     migrate.init_app(app, db)
-    from .model import models
+    # from .model import models
 
-    return
 
 def init_environment(app):
     # 특정파일(cfg, ...)등을 읽어서 처리 가능
