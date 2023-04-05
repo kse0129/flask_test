@@ -35,7 +35,7 @@ def init_database(app):
     # ORM을 위한 flask, sql, migrate 객체 연결
     db.init_app(app)
     migrate.init_app(app, db)
-    # from .model import models
+    from .model import models
 
 
 def init_environment(app):
@@ -45,7 +45,7 @@ def init_environment(app):
     import service.config as config
     app.config.from_object(config)
 
-    print('\n' + '-'*20)
+    # print('\n' + '-'*20)
 
     # 환경변수(os, flask, 사용자 정의 레벨) 모두 출력
     # for k, v in app.config.items():
@@ -54,7 +54,7 @@ def init_environment(app):
     # 개별 환경변수 추출
     # print(app.config['SECRET_KEY'], app.config.get('SECRET_KEY'))
 
-    print('-'*20 + '\n')
+    # print('-'*20 + '\n')
 
 
 def init_blueprint(app):
